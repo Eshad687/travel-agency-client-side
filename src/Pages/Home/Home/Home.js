@@ -1,9 +1,11 @@
 import React from 'react';
 import Footer from '../../Shared/Footer/Footer';
 import Banner from '../Banner/Banner';
+import Community from '../Community/Community';
 import Offerings from '../Offerings/Offerings';
-import Community from './Community/Community';
-import TravelersReview from './TravelersReview/TravelersReview';
+import TravelersReview from '../TravelersReview/TravelersReview';
+
+
 
 const Home = () => {
     return (

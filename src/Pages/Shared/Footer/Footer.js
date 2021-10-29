@@ -5,7 +5,7 @@ import { faMailBulk, faPhoneSquareAlt, faAddressCard } from '@fortawesome/free-s
 
 const Footer = () => {
     return (
-        <div className="pt-5">
+        <div className="">
             <div className="bg-dark mt-5">
                 <Container className="text-muted py-5">
                     <p className="text-center">Subscribe for getting news and offers</p>

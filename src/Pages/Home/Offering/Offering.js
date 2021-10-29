@@ -5,10 +5,10 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import './Offering.css'
 import { useHistory } from 'react-router';
 const Offering = ({ offer }) => {
-    const { name, desc, img } = offer;
+    const { name, desc, img, _id } = offer;
     const history = useHistory()
-    const handleBookNow = (name) => {
-        history.push(`/offerings/${name}`)
+    const handleBookNow = (id) => {
+        history.push(`/offerings/${id}`)
     }
     return (
         <Col>
@@ -20,7 +20,7 @@ const Offering = ({ offer }) => {
                         <Card.Text>
                             {desc.slice(0, 80) + " ..."}
                         </Card.Text>
-                        <Card.Text><Button onClick={() => handleBookNow(name)} variant="outline-light">Book Now <FontAwesomeIcon icon={faArrowRight} /></Button></Card.Text>
+                        <Card.Text><Button onClick={() => handleBookNow(_id)} variant="outline-light">Book Now <FontAwesomeIcon icon={faArrowRight} /></Button></Card.Text>
                     </div>
                 </Card.ImgOverlay>
             </Card>

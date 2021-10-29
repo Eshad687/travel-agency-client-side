@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
+
 import { Container, Row } from 'react-bootstrap';
 import Offering from '../Offering/Offering';
 import './Offerings.css'
+import useOfferings from '../../../Hooks/useOfferings';
 
 const Offerings = () => {
-    const [offers, setOffers] = useState([]);
-    useEffect(() => {
-        fetch('/try.json')
-            .then(res => res.json())
-            .then(data => setOffers(data))
-    }, [])
+    const { offers } = useOfferings();
     return (
         <Container id="offerings" className="mt-5">
             <h2 className="text-center section-heading">WHAT WE ARE <span className="text-warning">OFFERING</span> </h2>

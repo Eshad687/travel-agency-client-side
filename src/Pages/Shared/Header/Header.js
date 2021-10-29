@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import useAuth from '../../../Hooks/useAuth';
 
-const Header = () => {
+const Header = ({ children }) => {
     const { user, logOut } = useAuth();
     return (
         <div>
-            <Navbar collapseOnSelect expand="lg" variant="dark">
+            <Navbar collapseOnSelect className={children} expand="lg" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home"><img style={{ filter: "brightness(20)" }} height="90px" width="120px" src={logo} alt="" /></Navbar.Brand>
+                    <Navbar.Brand as={NavLink} to="/home"><img style={{ filter: "brightness(20)" }} height="90px" width="120px" src={logo} alt="" /></Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
@@ -24,7 +24,7 @@ const Header = () => {
                             {user?.email && <>
                                 <Nav.Link as={NavLink} to="/mybookings">My Bookings</Nav.Link>
                                 <Nav.Link as={NavLink} to="/managebookings">Manage Bookings</Nav.Link>
-                                <Nav.Link as={NavLink} to="/addDestination">Add Destination</Nav.Link>
+                                <Nav.Link as={NavLink} to="/addDestination">Add Sites</Nav.Link>
                             </>}
                             {user?.email && <span className="text-white mx-3 my-auto">{user.displayName}</span>}
                             {
