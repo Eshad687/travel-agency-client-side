@@ -1,0 +1,20 @@
+.community-one{
+    background-color: rgba(4, 82, 43, 0.5);
+    box-shadow: 10px 10px rgba(128, 128, 128, 0.363);
+}
+.community-two{
+    background-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 10px 10px rgba(128, 128, 128, 0.363);
+
+}
+.community-three{
+    background-color: rgba(255, 0, 255, 0.5);
+    box-shadow: 10px 10px rgba(128, 128, 128, 0.363);
+}
+.community-four{
+    background-color: rgba(153, 0, 255, 0.5);
+    box-shadow: 10px 10px rgba(128, 128, 128, 0.363);
+}
+.community-img{
+    box-shadow: 10px 10px rgba(128, 128, 128, 0.363);
+}
