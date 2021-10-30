@@ -19,7 +19,7 @@ const OfferingDetails = () => {
     const onSubmit = data => {
         data.status = "pending";
         data.img = offering?.img;
-        axios.post('http://localhost:5000/bookings', data)
+        axios.post('https://guarded-everglades-56009.herokuapp.com/bookings', data)
             .then(res => {
                 console.log(res.data.insertedId)
                 if (res.data.insertedId) {

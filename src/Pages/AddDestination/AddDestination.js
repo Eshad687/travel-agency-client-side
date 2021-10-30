@@ -8,7 +8,7 @@ import Header from '../Shared/Header/Header';
 const AddDestination = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/offerings', data)
+        axios.post('https://guarded-everglades-56009.herokuapp.com/offerings', data)
             .then(res => {
                 if (res.data.insertedId) {
                     reset();

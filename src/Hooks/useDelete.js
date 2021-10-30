@@ -7,7 +7,7 @@ const useDelete = () => {
     const handleDelete = (id) => {
         const proceed = window.confirm('Are you sure?')
         if (proceed) {
-            axios.delete(`http://localhost:5000/bookings/${id}`)
+            axios.delete(`https://guarded-everglades-56009.herokuapp.com/bookings/${id}`)
                 .then(res => {
 
                     if (res.data.deletedCount > 0) {

@@ -82,7 +82,7 @@ const TravelersReview = () => {
                         </Row>
                     </Col>
                     <Col sm={12} md={6}>
-                        <Carousel className="mt-1" >
+                        <Carousel className="mt-1 card" >
                             <Carousel.Item className="w-100 text-center p-5 carousel-page carousel-one ">
                                 <img className="rounded-circle" width="100px" height="100px" src="https://image.freepik.com/free-photo/smiling-optimistic-man-show-thumb-up-approve-recommend_176420-17852.jpg" alt="" />
                                 <h1>Tom Hanks</h1>
@@ -95,7 +95,7 @@ const TravelersReview = () => {
                                     <FontAwesomeIcon className="text-warning" icon={faStarHalfAlt} />
                                 </div>
                             </Carousel.Item>
-                            <Carousel.Item className="w-100 text-center p-5 carousel-page carousel-two">
+                            <Carousel.Item className="w-100 text-center p-5 carousel-page carousel-two ">
                                 <img className="rounded-circle" width="100px" height="100px" src="https://image.freepik.com/free-photo/happy-satisfied-female-customer-holding-cellphone_74855-2299.jpg" alt="" />
                                 <h1>Kate Blancett</h1>
                                 <p>The holiday of a life time - our gulet adventure in the Dodecanese Greek Islands was without a doubt our favourite family trip. The comfort and beauty of the gulet, the incredibly caring crew, the delicious food, the history we learned from our competent and friendly leader, along with the stunning beauty of the islands</p>
