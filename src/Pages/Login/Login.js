@@ -23,7 +23,7 @@ const Login = () => {
         <>
             <Header>{"bg-dark"}</Header>
             <div className="text-center mt-5 pt-5">
-                <Button onClick={handleGoogleLogin} className="mt-2 other-sign-in-btn rounded-pill border w-25" variant="white">
+                <Button onClick={handleGoogleLogin} className="mt-2 other-sign-in-btn rounded-pill border w-25 fw-bold" variant="white">
                     <div className="d-flex justify-content-between">
 
 

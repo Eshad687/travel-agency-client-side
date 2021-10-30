@@ -3,13 +3,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Pages/Home/Home/Home';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './Pages/Login/Login';
-import MyBookings from './Pages/MyBookings/MyBookings';
-import ManageBookings from './Pages/ManageBookings/ManageBookings';
+
+
 import AddDestination from './Pages/AddDestination/AddDestination';
 import NotFound from './Pages/NotFound/NotFound';
 import OfferingDetails from './Pages/OfferingDetails/OfferingDetails';
 import AuthProvider from './Contexts/AuthProvider';
 import PrivateRoute from './Pages/PrivateRoute/PrivateRoute';
+import ManageBookings from './Pages/ManageBookings/ManageBookings';
+import MyBookings from './Pages/MyBookings/MyBookings';
+
 function App() {
   return (
     <div>

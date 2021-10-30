@@ -1,7 +1,9 @@
+import axios from 'axios';
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
+import useAuth from '../../Hooks/useAuth';
 import useOfferings from '../../Hooks/useOfferings';
 import Footer from '../Shared/Footer/Footer';
 import Header from '../Shared/Header/Header';
@@ -9,11 +11,24 @@ import Header from '../Shared/Header/Header';
 const OfferingDetails = () => {
     const { offers } = useOfferings();
     const { id } = useParams();
+    const { user } = useAuth();
 
 
     const offering = offers?.find(offer => offer._id === id);
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+    const onSubmit = data => {
+        data.status = "pending";
+        data.img = offering?.img;
+        axios.post('http://localhost:5000/bookings', data)
+            .then(res => {
+                console.log(res.data.insertedId)
+                if (res.data.insertedId) {
+                    reset();
+                    alert('Booking is pending')
+
+                }
+            })
+    };
 
 
     return (
@@ -23,13 +38,13 @@ const OfferingDetails = () => {
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
-            height: "780px",
+            height: "850px",
             width: "100%"
         }}>
             <Header></Header>
-            <Container className="mt-5">
+            <Container >
                 <Row>
-                    <Col md={6} className="text-white">
+                    <Col md={6} className="text-white mt-5">
                         <img className="w-100 rounded-3 border border-3 border-warning p-2" src={offering?.img} alt="" />
                         <br />
                         <h4>{offering?.name}</h4>
@@ -37,17 +52,25 @@ const OfferingDetails = () => {
                         <h4 className="text-danger">Price: ${offering?.price}</h4>
                     </Col>
 
-                    <Col md={6}>
+                    <Col md={6} className="mt-4">
                         <form className="py-3" onSubmit={handleSubmit(onSubmit)}>
                             <Row className="px-2 mx-2 mx-md-5 bg-white py-3 rounded-3">
-                                <h6 className="text-muted">Package Name</h6>
-                                <input defaultValue={offering?.name} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("PackageName")} />
-
-                                {errors.PackageName && <small>This field is required</small>}
                                 <h6 className="text-muted">Your Name</h6>
-                                <input className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("yourName")} />
+                                <input defaultValue={user?.displayName} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("name")} />
 
-                                {errors.yourName && <small>This field is required</small>}
+                                {errors.name && <small>This field is required</small>}
+                                <h6 className="text-muted">Your Email</h6>
+                                <input type="email" defaultValue={user?.email} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("email")} />
+
+                                {errors.email && <small>This field is required</small>}
+                                {offering?.name && <>
+                                    <h6 className="text-muted">Package Name</h6>
+                                    <input defaultValue={offering.name} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("packageName")} />
+
+                                    {errors.packageName && <small>This field is required</small>}
+
+                                </>}
+
 
                                 <h6 className="text-muted">Phone</h6>
                                 <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("phone", { required: true })} />
@@ -59,6 +82,21 @@ const OfferingDetails = () => {
                                 <input type="date" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("date", { required: true })} />
 
                                 {errors.date && <small>This field is required</small>}
+
+
+                                <h6 className="text-muted">Gender</h6>
+                                <select className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("gender")}>
+                                    <option value="female">female</option>
+                                    <option value="male">male</option>
+                                    <option value="other">other</option>
+                                </select>
+
+                                {errors.gender && <small>This field is required</small>}
+
+                                <h6 className="text-muted">Age</h6>
+                                <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("age", { required: true })} />
+
+                                {errors.age && <small>This field is required</small>}
 
 
 

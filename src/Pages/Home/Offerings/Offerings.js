@@ -12,7 +12,7 @@ const Offerings = () => {
             <Row xs={1} md={3} className="g-4 mt-3">
                 {
                     offers?.map(offer => <Offering
-                        key={offer.name}
+                        key={offer._id}
                         offer={offer}
                     ></Offering>)
                 }
