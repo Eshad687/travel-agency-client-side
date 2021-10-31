@@ -9,11 +9,13 @@ import Footer from '../Shared/Footer/Footer';
 import Header from '../Shared/Header/Header';
 
 const OfferingDetails = () => {
+
+    // GETTING DATA FROM CUSTOM HOOK
     const { offers } = useOfferings();
     const { id } = useParams();
     const { user } = useAuth();
 
-
+    // SENDING BOOKING DATA TO THE DATABASE
     const offering = offers?.find(offer => offer._id === id);
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
@@ -32,6 +34,7 @@ const OfferingDetails = () => {
 
 
     return (
+        // SET THE BACKGROUND OF THE PAGE
         <div style={{
             backgroundImage: `url(${offering?.img}),linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))`,
             backgroundBlendMode: "overlay",
@@ -43,18 +46,22 @@ const OfferingDetails = () => {
         }}>
             <Header></Header>
             <Container >
+                {/* OFFERING INFORMATION */}
                 <Row>
                     <Col md={6} className="text-white mt-5">
                         <img className="w-100 rounded-3 border border-3 border-warning p-2" src={offering?.img} alt="" />
                         <br />
                         <h4>{offering?.name}</h4>
                         <p>{offering?.desc}</p>
-                        <h4 className="text-danger">Price: ${offering?.price}</h4>
+                        <h4 className="text-white bg-danger w-50 p-2 text-center rounded-pill">Price: ${offering?.price}</h4>
                     </Col>
 
+                    {/* BOOKING FORM */}
                     <Col md={6} className="mt-4">
                         <form className="py-3" onSubmit={handleSubmit(onSubmit)}>
-                            <Row className="px-2 mx-2 mx-md-5 bg-white py-3 rounded-3">
+
+                            <Row className="px-3 mx-2 mx-md-5 bg-white py-3 rounded-3">
+                                <h4 className="text-center mt-2 mb-4 text-primary fw-bold">BOOK YOUR TRIP</h4>
                                 <h6 className="text-muted">Your Name</h6>
                                 <input defaultValue={user?.displayName} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("name")} />
 
@@ -100,7 +107,7 @@ const OfferingDetails = () => {
 
 
 
-                                <input className=" bg-success text-white border-0 rounded py-2 mt-4" type="submit" />
+                                <input className="btn bg-success text-white border-0 rounded py-2 mt-4 fw-bold" type="submit" />
                             </Row>
                         </form>
 

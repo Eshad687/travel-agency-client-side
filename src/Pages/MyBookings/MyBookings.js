@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Card, Col, Row, Button } from 'react-bootstrap';
+import { Card, Col, Row, Button, Spinner } from 'react-bootstrap';
 import useAuth from '../../Hooks/useAuth';
 import useDelete from '../../Hooks/useDelete';
 import Footer from '../Shared/Footer/Footer';
@@ -12,21 +12,33 @@ import './MyBookings.css';
 const MyBookings = () => {
     const [myBookings, setMyBookings] = useState([]);
     const { user } = useAuth();
+
+    // GETTING DATA FROM CUSTOM HOOK
     const { isDeleted, handleDelete } = useDelete();
 
+    // GETTING USERS BOOKING DATA FROM DATABASE
     useEffect(() => {
         axios.get(`https://guarded-everglades-56009.herokuapp.com/bookings/${user?.email}`)
             .then(res => setMyBookings(res.data))
     }, [isDeleted])
 
+
     return (
         <div>
             <Header>{"bg-dark"}</Header>
+
             <div className="m-5">
-                <h1 className="text-center">MY BOOKINGS</h1>
+                <h2 className="text-center section-heading">MY <span className="text-warning">BOOKINGS</span> </h2>
+
+                {/* USERS BOOKING DATA */}
                 <Row xs={1} md={3} className="g-4 mt-3">
                     {
-                        myBookings?.map(booking => <Col key={booking._id}>
+                        myBookings.length === 0 ? <div className="mx-auto">
+                            <Spinner animation="border" variant="success" />
+                            <Spinner animation="border" variant="danger" />
+                            <Spinner animation="border" variant="warning" />
+                            <Spinner animation="border" variant="info" />
+                        </div> : myBookings.map(booking => <Col key={booking._id}>
                             <Card className="bg-dark text-white border-0 ">
                                 <Card.Img className="mybooking-img rounded" style={{ filter: "brightness(0.5)" }} src={booking?.img} alt="Card image" />
                                 <Card.ImgOverlay className="d-flex align-items-end justify-content-center text-center p-1">

@@ -6,6 +6,8 @@ import Footer from '../Shared/Footer/Footer';
 import Header from '../Shared/Header/Header';
 
 const AddDestination = () => {
+
+    // SENDING OFFERINGS DATA TO THE DATABASE
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const onSubmit = data => {
         axios.post('https://guarded-everglades-56009.herokuapp.com/offerings', data)
@@ -20,6 +22,8 @@ const AddDestination = () => {
     return (
         <div>
             <Header>{"bg-dark"}</Header>
+
+            {/* OFFERINGS ADDITION FORM */}
             <Container className="my-5">
                 <form className="py-3 w-75 mx-auto shadow-lg rounded" onSubmit={handleSubmit(onSubmit)}>
                     <h2 className="text-center">ADD A TOURIST ATTRACTION</h2>
@@ -41,10 +45,6 @@ const AddDestination = () => {
                         <input className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("img", { required: true })} />
 
                         {errors.img && <small>This field is required</small>}
-
-
-
-
 
                         <input className=" bg-success text-white border-0 rounded py-2 mt-4" type="submit" defaultValue="Add to database" />
                     </Row>

@@ -1,6 +1,6 @@
 
 import { Container, Row, Col } from 'react-bootstrap';
-import './Community.css'
+import './Community.css';
 
 
 
@@ -11,6 +11,7 @@ const Community = () => {
             <Container className="py-5 mb-5">
                 <h1 className="fw-bolder text-center border-bottom">OUR <span className="text-danger">COMMUNITY</span> </h1>
 
+                {/* COMMUNITY INFORMATION */}
                 <Row className="mt-5 text-center">
                     <Col sm={6} md={3} >
                         <div className=" community-one rounded py-5 my-3 card">
@@ -37,6 +38,8 @@ const Community = () => {
                         </div>
                     </Col>
                 </Row>
+
+                {/* COMMUITY IMAGES */}
                 <Row>
                     <Col md={4}>
                         <img className="w-100 community-img my-3 card" height="300px" src="https://image.freepik.com/free-vector/eco-tourism-concept_23-2148628567.jpg" alt="" />

@@ -6,7 +6,7 @@ import useAuth from '../../Hooks/useAuth';
 
 const PrivateRoute = ({ children, ...rest }) => {
 
-
+    // SETTING UP PRIVAE ROUTES
     // solving page reload getting back to login page
     const { user, isLoading } = useAuth();
     // console.log(isLoading)

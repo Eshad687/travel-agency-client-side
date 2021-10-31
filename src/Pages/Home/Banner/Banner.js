@@ -3,8 +3,8 @@ import React from 'react';
 import { Col, Container, Row, Button } from 'react-bootstrap';
 import Header from '../../Shared/Header/Header';
 import './Banner.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 
 const Banner = () => {

@@ -1,17 +1,26 @@
 import React from 'react';
 import { Card, Col, Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import './Offering.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import './Offering.css';
 import { useHistory } from 'react-router';
+
+
+
 const Offering = ({ offer }) => {
+
+    // DESTRUCTURING RECEIVED DATA
     const { name, desc, img, _id } = offer;
+
+    // GO TO DYNAMIC ROUTE 
     const history = useHistory()
     const handleBookNow = (id) => {
         history.push(`/offerings/${id}`)
     }
     return (
         <Col>
+
+            {/* OFFERING CARD */}
             <Card className="bg-dark text-white border-0 ">
                 <Card.Img className="offering-img" style={{ filter: "brightness(0.5)" }} src={img} alt="Card image" />
                 <Card.ImgOverlay className="d-flex align-items-end">

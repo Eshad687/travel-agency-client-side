@@ -10,7 +10,6 @@ import TravelersReview from '../TravelersReview/TravelersReview';
 const Home = () => {
     return (
         <div>
-
             <Banner></Banner>
             <Offerings></Offerings>
             <TravelersReview></TravelersReview>
