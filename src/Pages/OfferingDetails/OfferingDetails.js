@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router';
 import useAuth from '../../Hooks/useAuth';
@@ -46,73 +46,82 @@ const OfferingDetails = () => {
         }}>
             <Header></Header>
             <Container >
-                {/* OFFERING INFORMATION */}
-                <Row>
-                    <Col md={6} className="text-white mt-5">
-                        <img className="w-100 rounded-3 border border-3 border-warning p-2" src={offering?.img} alt="" />
-                        <br />
-                        <h4>{offering?.name}</h4>
-                        <p>{offering?.desc}</p>
-                        <h4 className="text-white bg-danger w-50 p-2 text-center rounded-pill">Price: ${offering?.price}</h4>
-                    </Col>
+                {offers.length === 0 ? <div className="mx-auto">
+                    <Spinner animation="border" variant="success" />
+                    <Spinner animation="border" variant="danger" />
+                    <Spinner animation="border" variant="warning" />
+                    <Spinner animation="border" variant="info" />
+                </div> :
+                    // {/* OFFERING INFORMATION */}
+                    <>
+                        <Row>
+                            <Col md={6} className="text-white mt-5">
+                                <img className="w-100 rounded-3 border border-3 border-warning p-2" src={offering?.img} alt="" />
+                                <br />
+                                <h4>{offering?.name}</h4>
+                                <p>{offering?.desc}</p>
+                                <h4 className="text-white bg-danger w-50 p-2 text-center rounded-pill">Price: ${offering?.price}</h4>
+                            </Col>
 
-                    {/* BOOKING FORM */}
-                    <Col md={6} className="mt-4">
-                        <form className="py-3" onSubmit={handleSubmit(onSubmit)}>
+                            {/* BOOKING FORM */}
+                            <Col md={6} className="mt-4">
+                                <form className="py-3" onSubmit={handleSubmit(onSubmit)}>
 
-                            <Row className="px-3 mx-2 mx-md-5 bg-white py-3 rounded-3">
-                                <h4 className="text-center mt-2 mb-4 text-primary fw-bold">BOOK YOUR TRIP</h4>
-                                <h6 className="text-muted">Your Name</h6>
-                                <input defaultValue={user?.displayName} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("name")} />
+                                    <Row className="px-3 mx-2 mx-md-5 bg-white py-3 rounded-3">
+                                        <h4 className="text-center mt-2 mb-4 text-primary fw-bold">BOOK YOUR TRIP</h4>
+                                        <h6 className="text-muted">Your Name</h6>
+                                        <input defaultValue={user?.displayName} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("name")} />
 
-                                {errors.name && <small>This field is required</small>}
-                                <h6 className="text-muted">Your Email</h6>
-                                <input type="email" defaultValue={user?.email} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("email")} />
+                                        {errors.name && <small>This field is required</small>}
+                                        <h6 className="text-muted">Your Email</h6>
+                                        <input type="email" defaultValue={user?.email} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("email")} />
 
-                                {errors.email && <small>This field is required</small>}
-                                {offering?.name && <>
-                                    <h6 className="text-muted">Package Name</h6>
-                                    <input defaultValue={offering.name} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("packageName")} />
+                                        {errors.email && <small>This field is required</small>}
+                                        {offering?.name && <>
+                                            <h6 className="text-muted">Package Name</h6>
+                                            <input defaultValue={offering.name} className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2"  {...register("packageName")} />
 
-                                    {errors.packageName && <small>This field is required</small>}
+                                            {errors.packageName && <small>This field is required</small>}
 
-                                </>}
-
-
-                                <h6 className="text-muted">Phone</h6>
-                                <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("phone", { required: true })} />
-
-                                {errors.phone && <small>This field is required</small>}
-
-
-                                <h6 className="text-muted">Date</h6>
-                                <input type="date" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("date", { required: true })} />
-
-                                {errors.date && <small>This field is required</small>}
+                                        </>}
 
 
-                                <h6 className="text-muted">Gender</h6>
-                                <select className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("gender")}>
-                                    <option value="female">female</option>
-                                    <option value="male">male</option>
-                                    <option value="other">other</option>
-                                </select>
+                                        <h6 className="text-muted">Phone</h6>
+                                        <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("phone", { required: true })} />
 
-                                {errors.gender && <small>This field is required</small>}
-
-                                <h6 className="text-muted">Age</h6>
-                                <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("age", { required: true })} />
-
-                                {errors.age && <small>This field is required</small>}
+                                        {errors.phone && <small>This field is required</small>}
 
 
+                                        <h6 className="text-muted">Date</h6>
+                                        <input type="date" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("date", { required: true })} />
 
-                                <input className="btn bg-success text-white border-0 rounded py-2 mt-4 fw-bold" type="submit" />
-                            </Row>
-                        </form>
+                                        {errors.date && <small>This field is required</small>}
 
-                    </Col>
-                </Row>
+
+                                        <h6 className="text-muted">Gender</h6>
+                                        <select className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("gender")}>
+                                            <option value="female">female</option>
+                                            <option value="male">male</option>
+                                            <option value="other">other</option>
+                                        </select>
+
+                                        {errors.gender && <small>This field is required</small>}
+
+                                        <h6 className="text-muted">Age</h6>
+                                        <input type="number" className="fw-bold bg-secondary bg-opacity-25 border-0 rounded py-2" {...register("age", { required: true })} />
+
+                                        {errors.age && <small>This field is required</small>}
+
+
+
+                                        <input className="btn bg-success text-white border-0 rounded py-2 mt-4 fw-bold" type="submit" />
+                                    </Row>
+                                </form>
+
+                            </Col>
+                        </Row>
+                    </>
+                }
             </Container>
             <Footer></Footer>
         </div>
